@@ -17,9 +17,7 @@ def first_function_execute(**context):
 
 
 def second_function_execute(**context):
-   
-   
-    print("I am in second_function_execute got value :{} from Function 1  ")
+    print("Is it me you looking for")
 
 
 with DAG(
