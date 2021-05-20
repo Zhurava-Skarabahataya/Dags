@@ -52,6 +52,16 @@ with DAG(
     )
     
     spark_op = SparkSubmitOperator(
-    task_id="spark")
+    task_id='spark_submit_job',
+    application='/home/ubuntu/test.py',
+    total_executor_cores='1',
+    executor_cores='1',
+    executor_memory='2g',
+    num_executors='1',
+    name='airflow-spark',
+    verbose=False,
+    driver_memory='1g',
+    conf={'master':'local'},
+    dag=dag)
 
-first_f >> second_f >> spark_op
+first_f >> second_f >> spark_submit_job

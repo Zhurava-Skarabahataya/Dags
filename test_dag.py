@@ -60,7 +60,7 @@ dag = DAG(
     verbose=False,
     driver_memory='1g',
     conf={'master':'local'},
-    dag=dag,
+    dag=dag
     )
     
     second_f = PythonOperator(
