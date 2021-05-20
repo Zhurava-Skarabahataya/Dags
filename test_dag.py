@@ -44,8 +44,6 @@ dag = DAG(
         default_args=default_args,
         catchup=False) as f:
         
-    
-
     first_f = PythonOperator(
         task_id="first",
         python_callable=first_function_execute,
