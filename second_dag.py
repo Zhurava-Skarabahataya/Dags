@@ -28,7 +28,7 @@ def second_function_execute(**context):
 
 
 with DAG(
-        dag_id="first_dag",
+        dag_id="second_dag",
         schedule_interval="@daily",
         default_args={
             "owner": "airflow",
