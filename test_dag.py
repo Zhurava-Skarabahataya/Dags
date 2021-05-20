@@ -31,15 +31,22 @@ default_args = {
     "start_date": datetime(2021, 1, 1),
 }
 
+_config ={'application':'/home/hadoop/pyspark_script/test_spark_submit.py',
+    'master' : 'yarn',
+    'deploy-mode' : 'cluster',
+    'executor_cores': 1,
+    'EXECUTORS_MEM': '2G'
+}
 
-with DAG(
+dag = DAG(
         dag_id="test_dag",
         schedule_interval="@once",
         default_args=default_args,
-        catchup=False) as f:
+        catchup=False) 
         
     spark_op = SparkSubmitOperator(
-    task_id="spark")
+    task_id="spark", dag=dag,
+    **_config)
 
     first_f = PythonOperator(
         task_id="first",
