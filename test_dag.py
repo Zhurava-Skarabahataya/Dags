@@ -44,12 +44,10 @@ dag = DAG(
         default_args=default_args,
         catchup=False) as f:
         
-    first_f = PythonOperator(
+    first_f = BashOperator(
         task_id="first",
-        python_callable=first_function_execute,
-        provide_context=True,
-        op_kwargs={"name":"Soumil Shah"}
-    )
+        bash_command='pwd',dag=dag      
+        )
     
     spark_op = SparkSubmitOperator(
     task_id='spark_submit_job',
