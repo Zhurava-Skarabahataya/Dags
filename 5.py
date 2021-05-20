@@ -5,8 +5,8 @@ try:
     from airflow.operators.python_operator import PythonOperator
     from airflow.operators.bash_operator import BashOperator
     from airflow.contrib.operators import *
-	from airflow.providers import *
-	from airflow.operators import *
+    from airflow.providers import *
+    from airflow.operators import *
     from pyspark.sql import SparkSession
     from pyspark.sql import *
 
