@@ -4,6 +4,7 @@ try:
     from airflow import DAG
     from airflow.operators.python_operator import PythonOperator
     from airflow.operators.bash_operator import BashOperator
+    from pyspark.sql import SparkSession
 
     print("All Dag modules are ok ......")
 except Exception as e:
@@ -17,6 +18,7 @@ def first_function_execute(**context):
 
 def second_function_execute(**context):
     print("Is it me you looking for")
+    spark = SparkSession.builder.master("local").appName("My PySpark code").getOrCreate()
 
 
 default_args = {
@@ -41,17 +43,10 @@ with DAG(
         op_kwargs={"name":"Soumil Shah"}
     )
     
-    run_spark = dataproc_operator.DataProcPySparkOperator(
-        task_id='run_spark',
-        main='trans.py',
-       
-        job_name='dataproc_job_name'
-)
-
     second_f = PythonOperator(
         task_id="second",
         python_callable=second_function_execute,
         provide_context=True,
     )
 
-first_f >> run_spark >> second_f
+first_f >> second_f
