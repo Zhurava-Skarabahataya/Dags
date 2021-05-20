@@ -18,19 +18,19 @@ def first_function_execute(**context):
 def second_function_execute(**context):
     print("Is it me you looking for")
 
-
+default_args = {
+    "owner": "airflow",
+    "retries": 1,
+    "retry_delay": timedelta(minutes=5),
+    "depends_on_past": False,
+    "start_date": datetime(2021, 1, 1),
+}
 
 
 with DAG(
         dag_id="first_dag",
         schedule_interval="@daily",
-        default_args={
-            "owner": "airflow",
-            "retries": 1,
-            "retry_delay": timedelta(minutes=5),
-            "depends_on_past": False,
-            "start_date": datetime(2021, 1, 1),
-        },
+        default_args=default_args,
         catchup=False) as f:
 
     first_function_execute = PythonOperator(
