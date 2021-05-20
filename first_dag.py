@@ -34,14 +34,14 @@ with DAG(
         catchup=False) as f:
 
     first_function_execute = PythonOperator(
-        task_id="first_function_execute",
+        task_id="first",
         python_callable=first_function_execute,
         provide_context=True,
         op_kwargs={"name":"Soumil Shah"}
     )
 
     second_function_execute = PythonOperator(
-        task_id="second_function_execute",
+        task_id="second",
         python_callable=second_function_execute,
         provide_context=True,
     )
