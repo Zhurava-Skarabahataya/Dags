@@ -4,7 +4,7 @@ try:
     from airflow import DAG
     from airflow.operators.python_operator import PythonOperator
     from airflow.operators.bash_operator import BashOperator
-    from operators.spark_submit import SparkSubmitOperator
+    from airflow.operators.spark_submit import SparkSubmitOperator
     from pyspark.sql import SparkSession
     from pyspark.sql import *
 
@@ -33,7 +33,7 @@ default_args = {
 
 
 with DAG(
-        dag_id="first_dag",
+        dag_id="2",
         schedule_interval="@once",
         default_args=default_args,
         catchup=False) as f:
