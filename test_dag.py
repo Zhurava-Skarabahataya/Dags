@@ -37,6 +37,9 @@ with DAG(
         schedule_interval="@once",
         default_args=default_args,
         catchup=False) as f:
+        
+    spark_op = SparkSubmitOperator(
+    task_id="spark")
 
     first_f = PythonOperator(
         task_id="first",
@@ -53,4 +56,4 @@ with DAG(
     
     
 
-first_f >> second_f 
+spark_op >> first_f >> second_f 
