@@ -42,11 +42,9 @@ dag = DAG(
         dag_id="test_dag",
         schedule_interval="@once",
         default_args=default_args,
-        catchup=False) 
+        catchup=False) as f:
         
-    spark_op = SparkSubmitOperator(
-    task_id="spark", dag=dag,
-    **_config)
+    
 
     first_f = PythonOperator(
         task_id="first",
@@ -55,11 +53,16 @@ dag = DAG(
         op_kwargs={"name":"Soumil Shah"}
     )
     
+    spark_op = SparkSubmitOperator(
+    task_id="spark", dag=dag,
+    **_config)
+    
     second_f = PythonOperator(
         task_id="second",
         python_callable=second_function_execute,
         provide_context=True,
     )
+    
     
     
 
