@@ -40,6 +40,13 @@ with DAG(
         provide_context=True,
         op_kwargs={"name":"Soumil Shah"}
     )
+    
+    run_spark = dataproc_operator.DataProcPySparkOperator(
+        task_id='run_spark',
+        main='trans.py',
+       
+        job_name='dataproc_job_name'
+)
 
     second_f = PythonOperator(
         task_id="second",
@@ -47,4 +54,4 @@ with DAG(
         provide_context=True,
     )
 
-first_f >> second_f
+first_f >> run_spark >> second_f
