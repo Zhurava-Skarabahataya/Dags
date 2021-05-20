@@ -19,7 +19,7 @@ def first_function_execute(**context):
 
 def second_function_execute(**context):
     print("Is it me you looking for")
-    spark = SparkSession.builder.master("local").appName("My PySpark code").getOrCreate()
+   
 
 
 default_args = {
@@ -49,5 +49,8 @@ with DAG(
         python_callable=second_function_execute,
         provide_context=True,
     )
+    
+    spark_op = SparkSubmitOperator(
+    task_id="spark")
 
-first_f >> second_f
+first_f >> second_f >> spark_op
