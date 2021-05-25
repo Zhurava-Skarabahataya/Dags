@@ -48,7 +48,6 @@ with DAG(
     second_fu = BashOperator(
         task_id="second",
         bash_command='echo HELLLLLOOOOOOOOOOO',
-        dag = dag
     )
     
 first_fu >> second_fu
