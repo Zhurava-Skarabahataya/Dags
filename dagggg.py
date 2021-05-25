@@ -2,6 +2,7 @@ try:
 
     from datetime import timedelta, datetime
     from airflow import DAG
+    from airflow.operators.python_operator import PythonOperator
     from airflow.operators.bash_operator import BashOperator
     from airflow.providers.apache.spark.operators.spark_submit import SparkSubmitOperator
     from pyspark.sql import SparkSession
@@ -31,16 +32,16 @@ default_args = {
 }
 
 
-dag = DAG(
+with DAG(
     "dagggg",
     schedule_interval="@once",
     default_args=default_args)
 
 first_f = PythonOperator(
-        task_id="first",
-        python_callable=first_function_execute,
-        provide_context=True,
-        op_kwargs={"name":"Soumil Shah"}
+    task_id="first",
+    python_callable=first_function_execute,
+    provide_context=True,
+    op_kwargs={"name":"Soumil Shah"}
     )
     
 second_f = BashOperator(
