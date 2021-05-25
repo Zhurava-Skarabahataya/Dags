@@ -2,9 +2,8 @@ try:
 
     from datetime import timedelta, datetime
     from airflow import DAG
-    from airflow.operators.python_operator import PythonOperator
     from airflow.operators.bash_operator import BashOperator
-    from airflow.contrib.operators.spark_submit_operator import SparkSubmitOperator
+    from airflow.providers.apache.spark.operators.spark_submit import SparkSubmitOperator
     from pyspark.sql import SparkSession
     from pyspark.sql import *
 
@@ -32,8 +31,8 @@ default_args = {
 }
 
 
-with DAG(
-        dag_id="4",
+dag = DAG(
+        dag_id="daggg",
         schedule_interval="@once",
         default_args=default_args,
         catchup=False) as f:
@@ -45,23 +44,12 @@ with DAG(
         op_kwargs={"name":"Soumil Shah"}
     )
     
-    second_f = PythonOperator(
+    second_f = BashOperator(
         task_id="second",
-        python_callable=second_function_execute,
-        provide_context=True,
+        bash_command='echo HELLLLLOOOOOOOOOOO',
+        dag = dag
     )
     
-    spark_op = SparkSubmitOperator(
-   task_id='spark_submit_job',
-    application='/home/ubuntu/test.py',
-    total_executor_cores='1',
-    executor_cores='1',
-    executor_memory='2g',
-    num_executors='1',
-    name='airflow-spark',
-    verbose=False,
-    driver_memory='1g',
-    conf={'master':'local'},
-    dag=dag)
+    
 
-first_f >> second_f >> spark_submit_job
+first_f >> second_f 
