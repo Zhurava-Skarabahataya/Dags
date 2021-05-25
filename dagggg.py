@@ -32,7 +32,7 @@ default_args = {
 
 
 dag = DAG(
-        dag_id="daggg",
+        dag_id="dagggg",
         schedule_interval="@once",
         default_args=default_args) as f:
 
