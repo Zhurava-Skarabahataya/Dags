@@ -4,6 +4,7 @@ try:
     from airflow import DAG
     from airflow.operators.python_operator import PythonOperator
     from airflow.operators.bash_operator import BashOperator
+    from airflow.providers.apache.spark.hooks.spark_submit import SparkSubmitHook
     from pyspark.sql import SparkSession
     from pyspark.sql import *
 
