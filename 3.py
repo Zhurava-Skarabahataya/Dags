@@ -32,7 +32,7 @@ default_args = {
 
 
 with DAG(
-        dag_id="3",
+        dag_id="31"
         schedule_interval="@once",
         default_args=default_args,
         catchup=False) as f:
@@ -44,10 +44,9 @@ with DAG(
         op_kwargs={"name":"Soumil Shah"}
     )
     
-    second_f = PythonOperator(
+    second_f = BashOperator(
         task_id="second",
-        python_callable=second_function_execute,
-        provide_context=True,
+        bash_command='echo HELLLLLOOOOOOOOOOO'
     )
     
    
