@@ -32,7 +32,7 @@ default_args = {
 
 
 with DAG(
-        dag_id="31"
+        dag_id="31",
         schedule_interval="@once",
         default_args=default_args,
         catchup=False) as f:
