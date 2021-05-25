@@ -45,7 +45,7 @@ with DAG(
         op_kwargs={"name":"Soumil Shah"}
     )
     
-    spark_submit_task = SparkSubmitOperator(
+    spark_submit_task = SparkSubmitHook(
     task_id='spark_submit_job',
     conn_id='spark_default',
     java_class='com.ibm.cdopoc.DataLoaderDB2COS',
