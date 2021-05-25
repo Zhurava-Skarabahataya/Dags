@@ -33,18 +33,19 @@ default_args = {
 
 
 with DAG(
-    "dagggg",
-    schedule_interval="@once",
-    default_args=default_args) as f:
+        dag_id="dagggg"
+        schedule_interval="@once",
+        default_args=default_args,
+        catchup=False) as f:
 
-first_fu = PythonOperator(
-    task_id="first",
-    python_callable=first_function_execute,
-    provide_context=True,
-    op_kwargs={"name":"Soumil Shah"}
+    first_fu = PythonOperator(
+        task_id="first",
+        python_callable=first_function_execute,
+        provide_context=True,
+        op_kwargs={"name":"Soumil Shah"}
     )
     
-second_fu = BashOperator(
+    second_fu = BashOperator(
         task_id="second",
         bash_command='echo HELLLLLOOOOOOOOOOO',
         dag = dag
