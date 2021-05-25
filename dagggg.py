@@ -37,17 +37,17 @@ with DAG(
     schedule_interval="@once",
     default_args=default_args)
 
-first_f = PythonOperator(
+first_fu = PythonOperator(
     task_id="first",
     python_callable=first_function_execute,
     provide_context=True,
     op_kwargs={"name":"Soumil Shah"}
     )
     
-second_f = BashOperator(
+second_fu = BashOperator(
         task_id="second",
         bash_command='echo HELLLLLOOOOOOOOOOO',
         dag = dag
     )
     
-    
+first_fu >> second_fu
