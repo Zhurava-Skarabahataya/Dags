@@ -5,9 +5,7 @@ try:
     from airflow.operators.python_operator import PythonOperator
     from airflow.operators.bash_operator import BashOperator
     from airflow.contrib.operators.spark_submit_operator import SparkSubmitOperator
-    from pyspark.sql import SparkSession
-    from pyspark.sql import *
-
+    
     print("All Dag modules are ok ......")
 except Exception as e:
     print("Error  {} ".format(e))
