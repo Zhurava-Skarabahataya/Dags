@@ -35,7 +35,7 @@ default_args = {
 with DAG(
     "dagggg",
     schedule_interval="@once",
-    default_args=default_args)
+    default_args=default_args) as f:
 
 first_fu = PythonOperator(
     task_id="first",
