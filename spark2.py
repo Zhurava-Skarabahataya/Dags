@@ -45,16 +45,7 @@ with DAG(
     
     spark_submit_task = SparkSubmitOperator(
     task_id='spark_submit_job',
-    java_class='com.ibm.cdopoc.DataLoaderDB2COS',
-    application='local:///opt/spark/examples/jars/cppmpoc-dl-0.1.jar',
-    total_executor_cores='1',
-    executor_cores='1',
-    executor_memory='2g',
-    num_executors='2',
-    name='airflowspark-DataLoaderDB2COS',
-    verbose=True,
-    driver_memory='1g',
-     )
+    )
     
      
 first_f 
