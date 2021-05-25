@@ -32,23 +32,21 @@ default_args = {
 
 
 dag = DAG(
-        dag_id="dagggg",
-        schedule_interval="@once",
-        default_args=default_args)
+    "dagggg",
+    schedule_interval="@once",
+    default_args=default_args)
 
-    first_f = PythonOperator(
+first_f = PythonOperator(
         task_id="first",
         python_callable=first_function_execute,
         provide_context=True,
         op_kwargs={"name":"Soumil Shah"}
     )
     
-    second_f = BashOperator(
+second_f = BashOperator(
         task_id="second",
         bash_command='echo HELLLLLOOOOOOOOOOO',
         dag = dag
     )
     
     
-
-first_f >> second_f 
