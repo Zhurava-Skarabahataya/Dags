@@ -43,10 +43,10 @@ with DAG(
         op_kwargs={"name":"Soumil Shah"}
     )
     
-    spark_submit_task = SparkSubmitOperator(
+    spark_submit_task1 = SparkSubmitOperator(
     task_id='spark_submit_job',
     conn_id='spark_default'
     )
     
      
-first_f 
+first_f >> spark_submit_task1
