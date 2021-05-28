@@ -44,7 +44,8 @@ with DAG(
     )
     
     spark_submit_task = SparkSubmitOperator(
-    task_id='spark_submit_job'
+    task_id='spark_submit_job',
+    conn_id='spark_default'
     )
     
      
