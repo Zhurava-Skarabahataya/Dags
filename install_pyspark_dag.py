@@ -35,7 +35,7 @@ default_args = {
 
 
 with DAG(
-        dag_id="install_puyspark_dag",
+        dag_id="install_pyspark_dag",
         schedule_interval="@once",
         default_args=default_args,
         catchup=False) as f:
