@@ -14,7 +14,7 @@ except Exception as e:
 
 def first_function_execute(**context):
     print("HELLO ")
-	pip install pyspark
+	pip install findspark
     import pyspark
     sc = pyspark.SparkContext()
     
