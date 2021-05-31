@@ -6,7 +6,7 @@ try:
     from airflow.operators.bash_operator import BashOperator
     from airflow.providers.apache.spark.hooks.spark_submit import SparkSubmitHook
     from pyspark.sql import SparkSession
-    from pyspark.sql import *
+    from pyspark import SparkConf, SparkContext
 
     print("All Dag modules are ok ......")
 except Exception as e:
@@ -15,7 +15,7 @@ except Exception as e:
 
 def first_function_execute(**context):
     print("HELLO ")
-    sc = pyspark.SparkContext()
+    sc = SparkContext()
    
     
 
